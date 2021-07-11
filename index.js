@@ -37,6 +37,29 @@ const introQuestions = [
     },
 ]
 
+const engineerQs = [
+    {
+        type:'input',
+        message: `What is the Engineer's name?`,
+        name: 'name',
+    },
+    {
+        type:'number',
+        message: `What is ${engineerQs.names} Employee ID`,  //Might need to be THIS engineers name
+        name: 'id',
+    },
+    {
+        type:'input',
+        message: `What is ${engineerQs.name}'s Email? `,
+        name: 'email',
+    },
+    {
+        type:'input',
+        message: `What is ${engineerQs.name}'s Github Username`,
+        name: 'github',
+    },
+]
+
 // {
 //     type:'',
 //     message: '',
