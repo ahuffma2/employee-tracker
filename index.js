@@ -99,22 +99,25 @@ prompt = question => {
     return inquirer
       .prompt(question)
       .then((answers) => {
-          if (answers.eChoice == 'Engineer'){
-            //CREATE A NEW ENGINEER
 
-            return prompt(engineerQs);//Loop back
+        switch(answers.eChoice){
 
-          }else if(answers.eChoice == 'Intern'){
-            //CREATE A NEW INTERN
-            
-            return prompt(internQs);
-          }
-            //Finished
-          else(console.log("end of Inquiry"));
+            case 'Engineer':
+                //CREATE NEW ENGINEER
+                return prompt(engineerQs);
+            case 'Intern':
+                //CREATE NEW INTERN
+                return prompt(internQs);
+            case 'No More Employees':
+                //ADD A RESPONSE TO SHOW THE USER ALL THEIR ADDED EMPLOYEES
+                console.log("Finished");
+            break;
+        }
+
       })
 }
 
-  prompt(introQuestions);
+prompt(introQuestions);
 
 
 
