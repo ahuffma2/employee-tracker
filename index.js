@@ -58,6 +58,12 @@ const engineerQs = [
         message: `What is their Github Username`,
         name: 'github',
     },
+    {
+        type:'list',
+        message: 'Please pick one of the following types of employees to add to your team',
+        name: 'eChoice',
+        choices: ['Engineer','Intern','No More Employees'],
+    },
 ]
 
 const internQs = [
@@ -81,40 +87,34 @@ const internQs = [
         message: `Where do they go to school`,
         name: 'school',
     },
+    {
+        type:'list',
+        message: 'Please pick one of the following types of employees to add to your team',
+        name: 'eChoice',
+        choices: ['Engineer','Intern','No More Employees'],
+    },
 ]
 
-// {
-//     type:'',
-//     message: '',
-//     name: '',
-// },
+prompt = question => {
+    return inquirer
+      .prompt(question)
+      .then((answers) => {
+          if (answers.eChoice == 'Engineer'){
+            //CREATE A NEW ENGINEER
 
+            return prompt(engineerQs);//Loop back
 
-///PROBABLY WILL CHANGE THE WAY THIS WORKS 
- inquirer
-    .prompt(introQuestions)
-    .then((response) => {
-        // SET MANAGER VARIABLES HERE
-        switch(response.eChoice) {
-            case 'Engineer':
-                //Do Engineer Stuffs
-                console.log(`You are adding a ${response.eChoice} to the team`);   //TEST FOR THIS 
-                inquirer.prompt(engineerQs)
-                break;
+          }else if(answers.eChoice == 'Intern'){
+            //CREATE A NEW INTERN
+            
+            return prompt(internQs);
+          }
+            //Finished
+          else(console.log("end of Inquiry"));
+      })
+}
 
-            case 'Intern':
-                //Do Intern Stuffs
-                console.log(response.eChoice);  //TEST FOR THIS
-
-                break;
-
-            case 'No More Employees':
-                //Do Finalize Stuffs
-                console.log(response.eChoice);  //TEST FOR THIS
-
-                break;
-        }
-    })
+  prompt(introQuestions);
 
 
 
