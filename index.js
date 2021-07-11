@@ -45,18 +45,41 @@ const engineerQs = [
     },
     {
         type:'number',
-        message: `What is ${engineerQs.names} Employee ID`,  //Might need to be THIS engineers name
+        message: `What is their Employee ID`, 
         name: 'id',
     },
     {
         type:'input',
-        message: `What is ${engineerQs.name}'s Email? `,
+        message: `What is their Email? `,
         name: 'email',
     },
     {
         type:'input',
-        message: `What is ${engineerQs.name}'s Github Username`,
+        message: `What is their Github Username`,
         name: 'github',
+    },
+]
+
+const internQs = [
+    {
+        type:'input',
+        message: `What is the Intern's name?`,
+        name: 'name',
+    },
+    {
+        type:'number',
+        message: `What is their Employee ID`, 
+        name: 'id',
+    },
+    {
+        type:'input',
+        message: `What is their Email? `,
+        name: 'email',
+    },
+    {
+        type:'input',
+        message: `Where do they go to school`,
+        name: 'school',
     },
 ]
 
@@ -66,6 +89,8 @@ const engineerQs = [
 //     name: '',
 // },
 
+
+///PROBABLY WILL CHANGE THE WAY THIS WORKS 
  inquirer
     .prompt(introQuestions)
     .then((response) => {
@@ -73,17 +98,20 @@ const engineerQs = [
         switch(response.eChoice) {
             case 'Engineer':
                 //Do Engineer Stuffs
-                console.log(response.eChoice);   //TEST FOR THIS 
+                console.log(`You are adding a ${response.eChoice} to the team`);   //TEST FOR THIS 
+                inquirer.prompt(engineerQs)
                 break;
 
             case 'Intern':
                 //Do Intern Stuffs
                 console.log(response.eChoice);  //TEST FOR THIS
+
                 break;
 
             case 'No More Employees':
                 //Do Finalize Stuffs
                 console.log(response.eChoice);  //TEST FOR THIS
+
                 break;
         }
     })
