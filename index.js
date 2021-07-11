@@ -12,21 +12,21 @@ const introQuestions = [
     {
         type: 'input',
         message: "What is your manager's name?",
-        name:'managerName',
+        name:'name',
     },
     {
         type:'number',
-        message: 'What is your Employee ID?',
-        name: 'managerID',
+        message: 'What is their Employee ID?',
+        name: 'id',
     },
     {
         type:'input',
-        message: 'What is your Email?',
-        name: 'managerEmail',
+        message: 'What is their Email?',
+        name: 'email',
     },
     {
         type:'number',
-        message: 'What is your office number?',
+        message: 'What is their office number?',
         name: 'officeNumber',
     },
     {
@@ -95,29 +95,55 @@ const internQs = [
     },
 ]
 
+
+
+const employees = [];
+let employeeType; //I don't want this to be global but I can't find a better way to track what was last answered that still can be used by the whole function
+
+//This launches the intro questions and loops through adding either Engineer or Intern until user chooses to stop adding employees
 prompt = question => {
     return inquirer
       .prompt(question)
       .then((answers) => {
 
-        switch(answers.eChoice){
+        //ADD EMPLOYEES HERE
+        //First Entry is Manager
 
+        if(employees.length == 0)
+        employees.push(new Manager(answers.name, answers.id, answers.email, answers.officeNumber));
+        else
+        switch(employeeType){
             case 'Engineer':
-                //CREATE NEW ENGINEER
+              employees.push(new Engineer(answers.name,answers.id,answers.email,answers.github));
+              break;
+            case 'Intern':
+              employees.push(new Intern(answers.name,answers.id,answers.email,answers.school));
+              break;
+        }
+
+        //SWITCH STATEMENT TO DETERMINE WHICH QUESTIONAIRE GETS LISTED NEXT
+        switch(answers.eChoice){
+            case 'Engineer':
+                employeeType = 'Engineer';
                 return prompt(engineerQs);
+
             case 'Intern':
                 //CREATE NEW INTERN
+                employeeType = 'Intern';
                 return prompt(internQs);
+
             case 'No More Employees':
                 //ADD A RESPONSE TO SHOW THE USER ALL THEIR ADDED EMPLOYEES
+                console.log(employees);
                 console.log("Finished");
             break;
         }
-
-      })
+    })
 }
 
 prompt(introQuestions);
+
+
 
 
 
