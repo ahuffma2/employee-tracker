@@ -7,7 +7,7 @@ const Manager = require('./lib/Manager');
 const inquirer = require('inquirer');  
 const fs = require('fs');
 
-console.log('Answer the following questions to build your Team! ')
+console.log('\nAnswer the following questions to build your Team!\n');
 const introQuestions = [
     {
         type: 'input',
@@ -97,15 +97,13 @@ const internQs = [
 const employees = [];
 let employeeType; //I don't want this to be global but I can't find a better way to track what was last answered that still can be used by the whole function
 
-//This launches the intro questions and loops through adding either Engineer or Intern until user chooses to stop adding employees
+//This launches the intro questions and loops through adding either Engineer or Intern based on user choice
 prompt = question => {
     return inquirer
       .prompt(question)
       .then((answers) => {
 
         //ADD EMPLOYEES HERE
-        //First Entry is Manager
-
         if(employees.length == 0)
         employees.push(new Manager(answers.name, answers.id, answers.email, answers.officeNumber));
         else
@@ -114,7 +112,8 @@ prompt = question => {
               employees.push(new Engineer(answers.name,answers.id,answers.email,answers.github));
               break;
             case 'Intern':
-              employees.push(new Intern(answers.name,answers.id,answers.email,answers.school));
+              const intern = new Intern(answers.name,answers.id,answers.email,answers.school);
+              employees.push(intern);
               break;
         }
 
@@ -130,11 +129,29 @@ prompt = question => {
                 return prompt(internQs);
 
             case 'No More Employees':
-                console.log("Your List of employees is " + employees);
-                console.log("Finished");
+
+                console.log("\nFinished\n");
+                //console.log(employees);
+                populateEmployees(employees);
             break;
         }
-    })
+    })  
 }
 
-prompt(introQuestions);
+// // TODO: Create a function to write README file
+// function writeToFile(fileName, data) {
+//   // console.log(generateMarkdown(data));
+//   fs.writeFile(fileName,generateMarkdown(data),(err) =>
+//   err ? console.log(err) : console.log('Success!')
+//   );
+// }
+
+populateEmployees = (employees) => {
+    console.log(employees);
+}
+
+function init(){
+    prompt(introQuestions);
+}
+
+init();
