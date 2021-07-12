@@ -36,7 +36,6 @@ const introQuestions = [
         choices: ['Engineer','Intern','No More Employees'],
     },
 ]
-
 const engineerQs = [
     {
         type:'input',
@@ -65,7 +64,6 @@ const engineerQs = [
         choices: ['Engineer','Intern','No More Employees'],
     },
 ]
-
 const internQs = [
     {
         type:'input',
@@ -94,7 +92,6 @@ const internQs = [
         choices: ['Engineer','Intern','No More Employees'],
     },
 ]
-
 
 
 const employees = [];
@@ -133,8 +130,7 @@ prompt = question => {
                 return prompt(internQs);
 
             case 'No More Employees':
-                //ADD A RESPONSE TO SHOW THE USER ALL THEIR ADDED EMPLOYEES
-                console.log(employees);
+                console.log("Your List of employees is " + employees);
                 console.log("Finished");
             break;
         }
@@ -142,8 +138,3 @@ prompt = question => {
 }
 
 prompt(introQuestions);
-
-
-
-
-
