@@ -7,6 +7,8 @@ const Manager = require('./lib/Manager');
 const inquirer = require('inquirer');  
 const fs = require('fs');
 
+const htmlGenerator = require('./src/htmlGenerator');
+
 console.log('\nAnswer the following questions to build your Team!\n');
 const introQuestions = [
     {
@@ -103,7 +105,6 @@ prompt = question => {
       .prompt(question)
       .then((answers) => {
 
-        //ADD EMPLOYEES HERE
         if(employees.length == 0)
         employees.push(new Manager(answers.name, answers.id, answers.email, answers.officeNumber));
         else
@@ -117,7 +118,6 @@ prompt = question => {
               break;
         }
 
-        //SWITCH STATEMENT TO DETERMINE WHICH QUESTIONAIRE GETS LISTED NEXT
         switch(answers.eChoice){
             case 'Engineer':
                 employeeType = 'Engineer';
@@ -131,8 +131,7 @@ prompt = question => {
             case 'No More Employees':
 
                 console.log("\nFinished\n");
-                //console.log(employees);
-                populateEmployees(employees);
+                populateEmployees(employees); 
             break;
         }
     })  
@@ -146,8 +145,10 @@ prompt = question => {
 //   );
 // }
 
-populateEmployees = (employees) => {
-    console.log(employees);
+function populateEmployees (employees) {
+    fs.writeFile('./dist/index.html',htmlGenerator(employees), (err) => 
+    err ? console.log(err) : console.log('Success!')
+    );
 }
 
 function init(){
