@@ -95,7 +95,6 @@ const internQs = [
     },
 ]
 
-
 const employees = [];
 let employeeType; //I don't want this to be global but I can't find a better way to track what was last answered that still can be used by the whole function
 
@@ -136,14 +135,6 @@ prompt = question => {
         }
     })  
 }
-
-// // TODO: Create a function to write README file
-// function writeToFile(fileName, data) {
-//   // console.log(generateMarkdown(data));
-//   fs.writeFile(fileName,generateMarkdown(data),(err) =>
-//   err ? console.log(err) : console.log('Success!')
-//   );
-// }
 
 function populateEmployees (employees) {
     fs.writeFile('./dist/index.html',htmlGenerator(employees), (err) => 

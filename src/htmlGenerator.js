@@ -54,7 +54,7 @@ function employees(employees) {
     <div class = "p-3 bg-light">
       <ul class="list-group list-group-flush border ">
         <li class="list-group-item list-id">ID: ${employees[i].getID()}</li>
-        <li class="list-group-item list-email">Email: ${employees[i].getEmail()}</li>
+        <li class="list-group-item list-email">Email:<a href="mailto: ${employees[i].getEmail()}"> ${employees[i].getEmail()}</a></li>
         ${roleHandler(employees[i])}
     </ul>
     </div>
@@ -63,6 +63,7 @@ function employees(employees) {
   return employeeCards.join('');
 }
 
+//Using this switch statement to insert different attributes based on what role they have
 function roleHandler(employee){
   switch (employee.getRole()){
     case 'Manager':
