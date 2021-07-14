@@ -130,7 +130,7 @@ prompt = question => {
 
             case 'No More Employees':
 
-                console.log("\nFinished\n");
+                console.log("\nPassing to HTML-Generator\n");
                 populateEmployees(employees); 
             break;
         }
