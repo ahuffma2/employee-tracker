@@ -23,8 +23,11 @@
   Follow Prompts and the HTML will generate based on your input
 
   --------
-  ## Contribution
-  N/A
+  ## Code Highlights
+  
+  ```
+  
+  ```
   
   --------
   ## Test Instructions
