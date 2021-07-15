@@ -16,13 +16,11 @@ let idList = [];
 nonEmptyValidator = (input) => {
     return (input == '') ? 'Must have a value entered' : true;
 }
-
 idValidator = (input) => {
     return (!/[0-9]/i.test(input)) ? 'Employee ID must contain a number'
         :idList.includes(input) ? 'ID Already Exists. Make sure your ID is correct'
         : true;
 }
-
 emailValidator = (input) => {
     return (!/[@]/i.test(input)) ? 'Must be an Email Address' : true;
 }
