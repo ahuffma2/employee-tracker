@@ -43,8 +43,7 @@ htmlGenerator = (data) => {
 function employees(employees) {
   let employeeCards = [];
   for(let i = 0; i < employees.length; i++)  {
-    
-  console.log('hello yes I am being called multiple times');
+
     employeeCards.push( `
     <div class="card mx-5 mb-3 shadow " style="width: 18rem;">
     <div class="card-body bg-primary">
